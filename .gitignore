@@ -1,0 +1,117 @@
+# General ignore rules for .NET projects
+
+# Binaries
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.suo
+*.user
+*.userosscache
+*.vspscc
+*.vssscc
+*.builds
+*.opendb
+*.log
+*.bak
+*.cache
+*.ncb
+*.aps
+*.lck
+*.vshost.*
+*.dbs
+*.vsexpress
+*.webinfo
+*.Publish.xml
+*.filters
+*.tmp
+*.vs/
+
+# Visual Studio specific files
+.vs/                  # .vs folder (user-specific stuff)
+*.csproj.user         # Per-user project options
+*.suo                 # Solution User Options file
+*.sln.docstates       # Solution user-specific state file
+*.opendata
+*.VC.db
+
+# NuGet related files
+*.nupkg               # NuGet packages
+*.snupkg              # NuGet symbol packages
+packages/             # Older style NuGet packages folder
+.nuget/NuGetScratch/  # NuGet temporary scratch folder
+# If you are using Paket, uncomment the following line:
+# .paket/paket.generated.targets
+
+# ReSharper and other JetBrains products
+.idea/                # IntelliJ IDEA, ReSharper etc.
+*.DotSettings
+*.ReSharper*
+
+# Rider
+.Rider/
+
+# Build results
+[Tt]humbs.db
+*.exe
+*.dll
+*.ini
+*.cmd
+*.bat
+*.ps1
+*.json # If output of build process
+
+# Source control
+*.scc
+
+# Test results
+TestResults/
+*.trx
+
+# Deployment files
+_PublishedWebsites/
+[Pp]ackage/
+
+# Environment variables and sensitive files
+.env
+appsettings.Development.json # Ko'pincha, development uchun maxfiy ma'lumotlar saqlanishi mumkin.
+# appsettings.json agar database passwordlari saqlansa
+
+# Log files
+*.log
+logs/
+
+# Database files (PostgreSQL specifics are handled by the client, but local temp files might appear)
+*.db                  # Umumiy database fayllari (masalan, SQLite)
+*.sqlite
+*.mdf
+*.ldf
+
+# Front-end build artifacts (if applicable, e.g. for an ASP.NET Core project with front-end assets)
+node_modules/
+/wwwroot/dist/
+/wwwroot/css/*.map
+/wwwroot/js/*.map
+
+# Other common temporary files
+*~
+#*#
+.DS_Store             # macOS system file
+ehthumbs.db
+desktop.ini
+
+# Project specific files
+# Agar sizda maxsus fayllar bo'lsa, ularni bu yerga qo'shishingiz mumkin
+# masalan:
+# /temp_uploads/
+
+```
+**Qanday qo'shiladi:**
+
+1.  Loyihangizning asosiy (root) papkasini oching (bu yerda sizning `.sln` faylingiz joylashgan).
+2.  Yangi fayl yarating va unga **`.gitignore`** deb nom bering (fayl nomining boshida nuqta borligiga va kengaytmasi yo'qligiga e'tibor bering).
+3.  Yuqoridagi kodni ushbu `.gitignore` fayliga nusxalash/joylashtirish.
+4.  Faylni saqlang.
+
+Shundan so'ng, siz Git repozitoriysiga kodni qo'shganingizda (misol uchun, `git add .` yoki `git commit` buyruqlari bilan), bu faylda sanab o'tilgan narsalar e'tiborga olinmay
