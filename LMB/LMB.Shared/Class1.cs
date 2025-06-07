@@ -1,0 +1,7 @@
+﻿namespace LMB.Shared
+{
+    public class Class1
+    {
+
+    }
+}
