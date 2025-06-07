@@ -75,15 +75,12 @@ _PublishedWebsites/
 
 # Environment variables and sensitive files
 .env
-appsettings.Development.json # Ko'pincha, development uchun maxfiy ma'lumotlar saqlanishi mumkin.
-# appsettings.json agar database passwordlari saqlansa
-
 # Log files
 *.log
 logs/
 
 # Database files (PostgreSQL specifics are handled by the client, but local temp files might appear)
-*.db                  # Umumiy database fayllari (masalan, SQLite)
+*.db                  
 *.sqlite
 *.mdf
 *.ldf
@@ -102,16 +99,6 @@ ehthumbs.db
 desktop.ini
 
 # Project specific files
-# Agar sizda maxsus fayllar bo'lsa, ularni bu yerga qo'shishingiz mumkin
-# masalan:
 # /temp_uploads/
 
 ```
-**Qanday qo'shiladi:**
-
-1.  Loyihangizning asosiy (root) papkasini oching (bu yerda sizning `.sln` faylingiz joylashgan).
-2.  Yangi fayl yarating va unga **`.gitignore`** deb nom bering (fayl nomining boshida nuqta borligiga va kengaytmasi yo'qligiga e'tibor bering).
-3.  Yuqoridagi kodni ushbu `.gitignore` fayliga nusxalash/joylashtirish.
-4.  Faylni saqlang.
-
-Shundan so'ng, siz Git repozitoriysiga kodni qo'shganingizda (misol uchun, `git add .` yoki `git commit` buyruqlari bilan), bu faylda sanab o'tilgan narsalar e'tiborga olinmay
