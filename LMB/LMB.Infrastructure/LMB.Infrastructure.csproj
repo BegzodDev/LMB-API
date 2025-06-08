@@ -11,4 +11,11 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LMB.Application\LMB.Application.csproj" />
+    <ProjectReference Include="..\LMB.Domain\LMB.Domain.csproj" />
+    <ProjectReference Include="..\LMB.Persistence\LMB.Persistence.csproj" />
+    <ProjectReference Include="..\LMB.Shared\LMB.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
