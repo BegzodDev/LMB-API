@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using LMB.Application.DTOs;
-using LMB.Persistence;
 using LMB.Domain;
 using MediatR;
+using LMB.Application.Interfaces;
 
 namespace LMB.Application.Features.Users.Commands.RegisterUser
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, UserDto>
     {
-        private readonly AppDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public RegisterUserCommandHandler(AppDbContext context)
+        public RegisterUserCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }

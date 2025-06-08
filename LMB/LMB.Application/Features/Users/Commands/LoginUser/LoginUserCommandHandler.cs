@@ -1,19 +1,19 @@
 ﻿using LMB.Application.DTOs;
-using LMB.Persistence;
+using LMB.Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace LMB.Application.Features.Users.Commands.LoginUser
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, UserDto?>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, UserDto>
     {
-        private readonly AppDbContext _context; 
+        private readonly IApplicationDbContext _context;
 
-        public LoginUserCommandHandler(AppDbContext context)
+        public LoginUserCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task<UserDto?> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public async Task<UserDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _context.Users
                 .AsNoTracking()
@@ -21,14 +21,14 @@ namespace LMB.Application.Features.Users.Commands.LoginUser
 
             if (user == null)
             {
-                return null;
+                throw new ApplicationException("Invalid credentials.");
             }
 
             var isPasswordValid = BCrypt.Net.BCrypt.Verify(request.LoginData.Password, user.PasswordHash);
 
             if (!isPasswordValid)
             {
-                return null;
+                throw new ApplicationException("Invalid credentials: Incorrect login or password.");
             }
 
             var userDto = new UserDto

@@ -1,13 +1,13 @@
 ﻿using LMB.Application.DTOs;
-using LMB.Persistence;
+using LMB.Application.Interfaces;
 using MediatR;
 
 namespace LMB.Application.Features.Users.Queries.GetUserById
 {
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto?>
     {
-        private readonly AppDbContext _context;
-        public GetUserByIdQueryHandler(AppDbContext context)
+        private readonly IApplicationDbContext _context;
+        public GetUserByIdQueryHandler(IApplicationDbContext context)
         {
             _context = context;
         }
