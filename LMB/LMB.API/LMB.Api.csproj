@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LMB.Application\LMB.Application.csproj" />
+    <ProjectReference Include="..\LMB.Infrastructure\LMB.Infrastructure.csproj" />
     <ProjectReference Include="..\LMB.Persistence\LMB.Persistence.csproj" />
   </ItemGroup>
 

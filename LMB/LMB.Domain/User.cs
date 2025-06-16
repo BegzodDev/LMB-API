@@ -1,4 +1,6 @@
-﻿namespace LMB.Domain
+﻿using System.Security.Claims;
+
+namespace LMB.Domain
 {
     public class User
     {
@@ -9,5 +11,6 @@
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public LinkProfile? Profile { get; set; }
+        //public ClaimsIdentity? Username { get; set; }
     }
 }

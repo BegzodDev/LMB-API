@@ -18,28 +18,13 @@ namespace LMB.Api.Controllers
             _sender = sender;
         }
 
-        [HttpPost("login")] 
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDto))]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login([FromBody] LoginUserRequestDto requestDto)
         {
             var command = new LoginUserCommand { LoginData = requestDto };
-                var user = await _sender.Send(command);
-                return Ok(user);
+            var user = await _sender.Send(command);
+            return Ok(user);
 
-            //try
-            //{
-            //}
-            //catch (ApplicationException ex)
-            //{
-            //    return Unauthorized(new { message = ex.Message });
-            //}
-            //catch (Exception ex) 
-            //{
-            //    Console.WriteLine(ex);
-            //    return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An unexpected error occurred." });
-            //}
         }
     }
 }
