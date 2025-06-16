@@ -5,18 +5,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LMB.Application.Features.Users.Commands.LoginUser
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, UserDto>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, AuthResponseDto>
     {
         private readonly IApplicationDbContext _context;
+        private readonly ITokenService _tokenService;
 
-        public LoginUserCommandHandler(IApplicationDbContext context)
+        public LoginUserCommandHandler(IApplicationDbContext context, ITokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
-        public async Task<UserDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public async Task<AuthResponseDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _context.Users
-                .AsNoTracking()
+            var user = await _context.Users.AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Email == request.LoginData.Email, cancellationToken);
 
             if (user == null)
@@ -31,6 +32,8 @@ namespace LMB.Application.Features.Users.Commands.LoginUser
                 throw new ApplicationException("Invalid credentials: Incorrect login or password.");
             }
 
+            var token = _tokenService.CreateToken(user);
+
             var userDto = new UserDto
             {
                 Id = user.Id,
@@ -39,7 +42,11 @@ namespace LMB.Application.Features.Users.Commands.LoginUser
                 CreatedAt = user.CreatedAt
             };
 
-            return userDto;
+            return new AuthResponseDto
+            {
+                Token = token,
+                User = userDto
+            };
         }
     }
 }
