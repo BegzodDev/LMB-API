@@ -17,10 +17,14 @@ namespace LMB.Infrastructure.Services
         }
         public string CreateToken(User user)
         {
+            if (user == null)
+                throw new Exception("User is null");
+
+            if (string.IsNullOrEmpty(user.Email))
+                throw new Exception("User email is null");
             var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.FullName),
             new Claim(ClaimTypes.Email, user.Email)
         };
 

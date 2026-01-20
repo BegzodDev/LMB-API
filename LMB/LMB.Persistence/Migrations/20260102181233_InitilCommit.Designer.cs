@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LMB.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250608113707_initial")]
-    partial class initial
+    [Migration("20260102181233_InitilCommit")]
+    partial class InitilCommit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
